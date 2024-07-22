@@ -1,8 +1,9 @@
 package com.amsidh.mvc.repository.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;
 
@@ -12,11 +13,12 @@ import java.io.Serializable;
 @EqualsAndHashCode
 @Builder
 @ToString
-@RedisHash("Employee")
+@Entity
+@Table(name = "Employee")
 public class Employee implements Serializable {
 
     @Id
-    private String id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;

@@ -1,7 +1,29 @@
 spring:
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:XE
+    username: system
+    password: tiger
+    driverClassName: oracle.jdbc.driver.OracleDriver
+  jpa:
+    showSql: true
+    databasePlatform: org.hibernate.dialect.OracleDialect
+    hibernate:
+      ddlAuto: update
+
+
   redis:
     host: localhost
     port: 6379
+  cache:
+    type: redis
+    redis:
+      timeToLive: 60000  # Default TTL for cache entries in milliseconds (optional)
+      enableStatistics: true
+
+cache:
+  ttl:
+    shortLivedCache: 60000  # 1 minute in milliseconds
+    longLivedCache: 3600000  # 1 hour in milliseconds
 
 management:
   endpoints:

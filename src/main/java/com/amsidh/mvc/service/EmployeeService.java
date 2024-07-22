@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface EmployeeService {
     Employee saveEmployee(Employee employee);
 
-    Employee getEmployeeById(String id);
+    Employee getEmployeeById(Long id);
 
-    Employee updateEmployee(@PathVariable String id, @RequestBody Employee employee);
+    Employee updateEmployee(@PathVariable Long id, @RequestBody Employee employee);
 
     Iterable<Employee> getAllEmployees();
 
-    void deleteEmployee(String id);
+    void deleteEmployee(Long id);
 }

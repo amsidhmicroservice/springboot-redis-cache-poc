@@ -24,7 +24,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
-    public Employee getEmployeeById(@PathVariable String id) {
+    public Employee getEmployeeById(@PathVariable Long id) {
         log.info("Inside getEmployeeById method of EmployeeController class");
         final Employee employee = employeeService.getEmployeeById(id);
         log.info("Ending getEmployeeById method of EmployeeController class");
@@ -40,12 +40,12 @@ public class EmployeeController {
     }
 
     @PutMapping("/{id}")
-    public Employee updateEmployee(@PathVariable String id, @RequestBody Employee employee) {
+    public Employee updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
         return employeeService.updateEmployee(id, employee);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteEmployee(@PathVariable String id) {
+    public void deleteEmployee(@PathVariable Long id) {
         employeeService.deleteEmployee(id);
     }
 }
