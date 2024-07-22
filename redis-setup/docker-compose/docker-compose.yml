@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  redis-node-1:
+    image: redis:6.2.6-alpine
+    command: ["redis-server", "--appendonly", "yes", "--cluster-enabled", "yes", "--cluster-config-file", "nodes.conf", "--cluster-node-timeout", "5000", "--appendonly", "yes"]
+    ports:
+      - "6379:6379"
+    networks:
+      redis-net:
+        ipv4_address: 172.28.0.2
+    volumes:
+      - redis-data-1:/data
+
+  redis-node-2:
+    image: redis:6.2.6-alpine
+    command: ["redis-server", "--appendonly", "yes", "--cluster-enabled", "yes", "--cluster-config-file", "nodes.conf", "--cluster-node-timeout", "5000", "--appendonly", "yes"]
+    ports:
+      - "6380:6379"
+    networks:
+      redis-net:
+        ipv4_address: 172.28.0.3
+    volumes:
+      - redis-data-2:/data
+
+  redis-node-3:
+    image: redis:6.2.6-alpine
+    command: ["redis-server", "--appendonly", "yes", "--cluster-enabled", "yes", "--cluster-config-file", "nodes.conf", "--cluster-node-timeout", "5000", "--appendonly", "yes"]
+    ports:
+      - "6381:6379"
+    networks:
+      redis-net:
+        ipv4_address: 172.28.0.4
+    volumes:
+      - redis-data-3:/data
+
+networks:
+  redis-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+
+volumes:
+  redis-data-1:
+  redis-data-2:
+  redis-data-3:
