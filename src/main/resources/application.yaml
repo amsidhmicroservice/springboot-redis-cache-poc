@@ -3,17 +3,10 @@ spring:
     url: jdbc:oracle:thin:@localhost:1521:XE
     username: system
     password: tiger
-    driverClassName: oracle.jdbc.driver.OracleDriver
   jpa:
-    show-sql: true
-    database-platform: org.hibernate.dialect.OracleDialect
+    open-in-view: false
     hibernate:
       ddl-auto: ${DDL_AUTO:update}
-    properties:
-      hibernate:
-        format_sql: ${FORMAT_SQL:true}
-        use_sql_comments: ${USE_SQL_COMMENTS:true}
-        generate_statistics: ${GENERATE_STATISTICS:true}
 
   # Spring Redis Configuration
   redis:
@@ -38,10 +31,19 @@ management:
   endpoint:
     health:
       show-details: always
+# Best logging jpa query
+decorator:
+  datasource:
+    datasource-proxy:
+      logging: slf4j
+      multiline: false
+      count-query: true
+      slow-query:
+        enable-logging: true
+        log-level: warn
+        threshold: 300
 
 logging:
   level:
-    #printing parameter values in order
-    org.hibernate.orm.jdbc.bind: trace
-    org.hibernate.stat: debug
-    #org.hibernate: trace
+    net.ttddyy.dsproxy.listener: debug
+
